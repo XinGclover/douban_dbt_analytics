@@ -1,0 +1,108 @@
+version: 2
+
+models:
+
+  - name: stg_comments
+    description: "Unified staging model for Douban comments across multiple dramas"
+
+    columns:
+
+      - name: comment_id
+        description: "Unique id of the comment"
+
+      - name: drama_id
+        description: "Identifier of the drama title"
+
+      - name: drama_name
+        description: "Name of the drama title"
+
+      - name: user_id
+        description: "Douban user id"
+        tests:
+          - not_null
+
+      - name: user_name
+        description: "User display name at the time of the comment"
+
+      - name: rating
+        description: "User rating of the drama"
+
+      - name: comment
+        description: "Comment text content"
+
+      - name: comment_time
+        description: "Timestamp when the comment was posted"
+
+      - name: ip_location
+        description: "User IP location recorded by Douban"
+  
+  - name: stg_comments_users
+    description: "User observations extracted from comments"
+
+    columns:
+
+      - name: user_id
+        description: "Douban user id"
+        tests:
+          - not_null
+
+      - name: user_name
+        description: "User display name"
+
+      - name: ip_location
+        description: "Location recorded when the comment was posted"
+
+      - name: observed_at
+        description: "Timestamp when this user was observed via comment"
+
+      - name: drama_id
+        description: "Drama identifier"
+
+      - name: source_table
+        description: "Source entity for this user observation"
+
+  - name: stg_topic_post_users
+    description: "User observations extracted from topic posts"
+
+    columns:
+
+      - name: user_id
+        description: "Douban user id"
+        tests:
+          - not_null
+
+      - name: user_name
+        description: "User display name"
+
+      - name: ip_location
+        description: "Location recorded when the comment was posted"
+
+      - name: observed_at
+        description: "Timestamp when this user was observed via comment"
+
+      - name: topic_id
+        description: "Topic identifier"
+
+      - name: source_table
+        description: "Source entity for this user observation"
+
+  - name: stg_group_member_users
+    description: "User observations extracted from group membership"    
+    columns:
+
+      - name: user_id
+        description: "Douban user id"
+        tests:
+          - not_null
+
+      - name: user_name
+        description: "User display name"
+
+      - name: ip_location
+        description: "Location recorded when the comment was posted"
+
+      - name: group_id
+        description: "Group identifier"
+
+      - name: source_table
+        description: "Source entity for this user observation"

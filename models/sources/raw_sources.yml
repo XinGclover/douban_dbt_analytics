@@ -1,0 +1,13 @@
+version: 2
+
+sources:
+  - name: raw
+    schema: public
+    tables:
+      - name: zhaoxuelu_comments
+      - name: shujuanyimeng_comments
+      - name: lizhi_comments
+      - name: filter_comments
+      - name: douban_topic_post_raw
+      - name: douban_group_members
+
