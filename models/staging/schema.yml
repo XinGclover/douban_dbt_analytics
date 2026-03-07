@@ -9,6 +9,8 @@ models:
 
       - name: comment_id
         description: "Unique id of the comment"
+        tests:
+          - not_null
 
       - name: drama_id
         description: "Identifier of the drama title"
@@ -106,3 +108,62 @@ models:
 
       - name: source_table
         description: "Source entity for this user observation"
+
+  - name: stg_drama_info
+
+    description: "Staging model for drama information"
+
+    columns:
+
+      - name: drama_id
+        description: "Identifier of the drama title"
+        tests:
+          - not_null
+
+      - name: drama_name
+        description: "Name of the drama title"
+
+      - name: release_year
+        description: "Release year of the drama"
+
+      - name: director
+        description: "Director(s) of the drama"
+
+      - name: actors
+        description: "Main actors in the drama"
+
+      - name: release_date
+        description: "Release date of the drama"
+
+      - name: rating
+        description: "Average user rating of the drama"
+
+      - name: rating_people
+        description: "Number of people who rated the drama"
+
+      - name: rating_1_star
+        description: "Percentage of 1-star ratings"
+
+      - name: rating_2_star
+        description: "Percentage of 2-star ratings"
+
+      - name: rating_3_star
+        description: "Percentage of 3-star ratings"
+
+      - name: rating_4_star
+        description: "Percentage of 4-star ratings"
+
+      - name: rating_5_star
+        description: "Percentage of 5-star ratings"
+
+      - name: total_comments
+        description: "Total number of comments for the drama"
+
+      - name: total_reviews
+        description: "Total number of reviews for the drama"
+
+      - name: total_discussions
+        description: "Total number of discussion threads for the drama"
+
+      - name: insert_time
+        description: "Timestamp when the record was inserted into the staging model"

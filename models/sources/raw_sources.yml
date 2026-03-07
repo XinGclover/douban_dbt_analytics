@@ -10,4 +10,5 @@ sources:
       - name: filter_comments
       - name: douban_topic_post_raw
       - name: douban_group_members
+      - name: douban_drama_info
 
