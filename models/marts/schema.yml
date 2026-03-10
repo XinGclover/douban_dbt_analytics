@@ -35,6 +35,9 @@ models:
 
     - name: comment
       description: "Comment text content"
+    
+    - name: like_count
+      description: "Number of likes/upvotes for the comment"
 
     - name: ip_location
       description: "User IP location recorded by Douban"

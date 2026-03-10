@@ -8,6 +8,7 @@ with zhaoxuelu as (
         cast(user_name as varchar) as user_name,
         cast(rating as integer) as rating,
         user_comment as comment,
+        votes as like_count,
         cast(create_time as timestamp) as comment_time,
         cast(user_location as varchar) as ip_location
     from {{ source('raw', 'zhaoxuelu_comments') }}
@@ -24,6 +25,7 @@ shujuanyimeng as (
         cast(user_name as varchar) as user_name,
         cast(rating as integer) as rating,
         user_comment as comment,
+        votes as like_count,
         cast(create_time as timestamp) as comment_time,
         cast(user_location as varchar) as ip_location
     from {{ source('raw', 'shujuanyimeng_comments') }}
@@ -40,6 +42,7 @@ lizhi as (
         cast(user_name as varchar) as user_name,
         cast(rating as integer) as rating,
         user_comment as comment,
+        votes as like_count,
         cast(create_time as timestamp) as comment_time,
         cast(user_location as varchar) as ip_location
     from {{ source('raw', 'lizhi_comments') }}
@@ -56,6 +59,7 @@ filter_drama as (
         cast(user_name as varchar) as user_name,
         cast(rating as integer) as rating,
         user_comment as comment,
+        votes as like_count,
         cast(create_time as timestamp) as comment_time,
         cast(user_location as varchar) as ip_location
     from {{ source('raw', 'filter_comments') }}

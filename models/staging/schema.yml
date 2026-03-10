@@ -32,6 +32,9 @@ models:
       - name: comment
         description: "Comment text content"
 
+      - name: like_count
+        description: "Number of likes/upvotes for the comment"
+
       - name: comment_time
         description: "Timestamp when the comment was posted"
 
