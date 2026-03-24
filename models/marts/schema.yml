@@ -1,0 +1,127 @@
+Version: 2
+
+models:
+  - name: fact_comments
+    description: "Fact table for Douban comments with user interactions and derived metrics"
+
+    columns:
+
+    - name: comment_id
+      description: "Unique identifier of the comment"
+      tests:
+      - not_null
+
+    - name: user_id
+      description: "Douban user id"
+      tests:
+        - not_null
+        - relationships:
+            to: ref('dim_users')
+            field: user_id
+
+    - name: drama_id
+      description: "Identifier of the drama title"
+      tests:
+        - not_null
+        - relationships:
+            to: ref('dim_dramas')
+            field: drama_id
+
+    - name: comment_time
+      description: "Timestamp when the comment was posted"
+
+    - name: rating
+      description: "User rating of the drama"
+
+    - name: comment
+      description: "Comment text content"
+    
+    - name: like_count
+      description: "Number of likes/upvotes for the comment"
+
+    - name: ip_location
+      description: "User IP location recorded by Douban"
+
+    - name: comment_length
+      description: "Length of the comment text"
+
+  - name: dim_users
+    description: "Dimension table for Douban users observed in comments"
+
+    columns:
+
+    - name: user_id
+      description: "Douban user id"
+      tests:
+        - not_null
+        - unique
+
+    - name: user_name
+      description: "User display name"
+
+    - name: ip_location
+      description: "Location recorded when the comment was posted"
+
+    - name: first_seen_at
+      description: "Timestamp when this user was first seen via comment"
+
+    - name: last_seen_at
+      description: "Timestamp when this user was last seen via comment"
+
+  - name: dim_dramas
+    description: "Dimension table for drama titles observed in comments"    
+
+    columns:
+    - name: drama_id
+      description: "Identifier of the drama title"
+      tests:
+        - not_null
+        - unique
+
+    - name: drama_name
+      description: "Name of the drama title"
+
+    - name: release_year
+      description: "Release year of the drama"        
+
+    - name: director
+      description: "Director of the drama"
+
+    - name: actors
+      description: "Main actors of the drama"
+
+    - name: release_date
+      description: "Release date of the drama"
+
+    - name: rating
+      description: "Average rating of the drama"
+
+    - name: rating_people
+      description: "Number of people who rated the drama"
+
+    - name: rating_1_star
+      description: "Number of 1-star ratings"
+
+    - name: rating_2_star
+      description: "Number of 2-star ratings"
+
+    - name: rating_3_star
+      description: "Number of 3-star ratings"
+
+    - name: rating_4_star
+      description: "Number of 4-star ratings"
+
+    - name: rating_5_star
+      description: "Number of 5-star ratings"
+
+    - name: total_comments
+      description: "Total number of comments for the drama"
+
+    - name: total_reviews
+      description: "Total number of reviews for the drama"
+
+    - name: total_discussions
+      description: "Total number of discussions for the drama"
+
+    - name: insert_time
+      description: "Timestamp when the drama record was inserted into the warehouse"

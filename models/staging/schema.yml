@@ -1,0 +1,309 @@
+version: 2
+
+models:
+
+  - name: stg_comments
+    description: "Unified staging model for Douban comments across multiple dramas"
+
+    columns:
+
+      - name: comment_id
+        description: "Unique id of the comment"
+        tests:
+          - not_null
+
+      - name: drama_id
+        description: "Identifier of the drama title"
+
+      - name: drama_name
+        description: "Name of the drama title"
+
+      - name: user_id
+        description: "Douban user id"
+        tests:
+          - not_null
+
+      - name: user_name
+        description: "User display name at the time of the comment"
+
+      - name: rating
+        description: "User rating of the drama"
+
+      - name: comment
+        description: "Comment text content"
+
+      - name: like_count
+        description: "Number of likes/upvotes for the comment"
+
+      - name: comment_time
+        description: "Timestamp when the comment was posted"
+
+      - name: ip_location
+        description: "User IP location recorded by Douban"
+
+      - name: insert_time
+        description: "Timestamp when the comment was inserted into db"
+
+      - name: source_name
+        description: "Source name of original table"
+  
+  - name: stg_comments_users
+    description: "User observations extracted from comments"
+
+    columns:
+
+      - name: user_id
+        description: "Douban user id"
+        tests:
+          - not_null
+
+      - name: user_name
+        description: "User display name"
+
+      - name: ip_location
+        description: "Location recorded when the comment was posted"
+
+      - name: observed_at
+        description: "Timestamp when this user was observed via comment"
+
+      - name: drama_id
+        description: "Drama identifier"
+
+      - name: source_table
+        description: "Source entity for this user observation"
+
+  - name: stg_topic_post_users
+    description: "Cleaned topic post data from Douban, including user and post information."
+
+    columns:
+
+      - name: topic_id
+        description: "Unique identifier for the topic."
+        tests:
+          - not_null
+
+      - name: topic_title
+        description: "Title of the topic."
+
+      - name: post_type
+        description: "Type of post (e.g., main post or reply)."
+
+      - name: floor_no
+        description: "Floor number of the post within the topic."
+
+      - name: topic_url
+        description: "URL of the topic."
+
+      - name: user_id
+        description: "Unique identifier of the user who created the post."
+        tests:
+          - not_null
+
+      - name: user_name
+        description: "Display name of the user."
+
+      - name: is_op_author
+        description: "Indicates whether the user is the original poster (OP)."
+
+      - name: content_text
+        description: "Text content of the post."
+
+      - name: like_count
+        description: "Number of likes (or useful votes) for the post."
+
+      - name: post_time
+        description: "Timestamp when the post was published."
+
+      - name: ip_location
+        description: "IP-based location of the user."
+      
+      - name: source_table
+        description: "Source entity for this posts observation"
+
+  - name: stg_group_member_users
+    description: "User observations extracted from group membership"    
+    columns:
+
+      - name: user_id
+        description: "Douban user id"
+        tests:
+          - not_null
+
+      - name: user_name
+        description: "User display name"
+
+      - name: group_id
+        description: "Group identifier"
+
+      - name: source_table
+        description: "Source entity for this user observation"
+
+  - name: stg_drama_info
+    description: "Staging model for drama information"
+    columns:
+
+      - name: drama_id
+        description: "Identifier of the drama title"
+        tests:
+          - not_null
+
+      - name: drama_name
+        description: "Name of the drama title"
+
+      - name: release_year
+        description: "Release year of the drama"
+
+      - name: director
+        description: "Director(s) of the drama"
+
+      - name: actors
+        description: "Main actors in the drama"
+
+      - name: release_date
+        description: "Release date of the drama"
+
+      - name: rating
+        description: "Average user rating of the drama"
+
+      - name: rating_people
+        description: "Number of people who rated the drama"
+
+      - name: rating_1_star
+        description: "Percentage of 1-star ratings"
+
+      - name: rating_2_star
+        description: "Percentage of 2-star ratings"
+
+      - name: rating_3_star
+        description: "Percentage of 3-star ratings"
+
+      - name: rating_4_star
+        description: "Percentage of 4-star ratings"
+
+      - name: rating_5_star
+        description: "Percentage of 5-star ratings"
+
+      - name: total_comments
+        description: "Total number of comments for the drama"
+
+      - name: total_reviews
+        description: "Total number of reviews for the drama"
+
+      - name: total_discussions
+        description: "Total number of discussion threads for the drama"
+
+      - name: insert_time
+        description: "Timestamp when the record was inserted into the staging model"  
+  - name: stg_drama_collection
+    description: "Unified staging model for Douban comments across multiple dramas"
+
+    columns:
+
+      - name: comment_id
+        description: "Unique id of the comment"
+        tests:
+          - not_null
+
+      - name: drama_id
+        description: "Identifier of the drama title"
+
+      - name: drama_name
+        description: "Name of the drama title"
+
+      - name: user_id
+        description: "Douban user id"
+        tests:
+          - not_null
+
+      - name: user_name
+        description: "User display name at the time of the comment"
+
+      - name: rating
+        description: "User rating of the drama"
+
+      - name: comment
+        description: "Comment text content"
+
+      - name: like_count
+        description: "Number of likes/upvotes for the comment"
+
+      - name: comment_time
+        description: "Timestamp when the comment was posted"
+
+      - name: ip_location
+        description: "User IP location recorded by Douban"
+
+      - name: insert_time
+        description: "Timestamp when the comment was inserted into db"
+
+      - name: source_name
+        description: "Source name of original table"
+
+  - name: stg_group_topics
+    description: >
+      Unified staging model for group topics from multiple sources.
+      Contains cleaned and standardized topic-level data for analysis.
+
+    columns:
+      - name: topic_id
+        description: Unique identifier for the topic
+        tests:
+          - not_null
+
+      - name: topic_title
+        description: Title of the topic
+
+      - name: topic_time
+        description: Timestamp when the topic was created or posted
+        tests:
+          - not_null
+
+      - name: reply_count
+        description: Number of replies in the topic
+
+      - name: group_id
+        description: Identifier of the group where the topic was posted
+        tests:
+          - not_null
+
+      - name: group_name
+        description: Name of the group
+
+      - name: key_word
+        description: Keyword used to categorize the topic (e.g. drama name)
+        tests:
+          - not_null
+
+      - name: insert_time
+        description: Timestamp when the record was inserted into the system
+
+      - name: source_name
+        description: Source table of the record
+        tests:
+          - not_null
+          - accepted_values:
+              values:
+                - zhaoxuelu_group_topics
+                - other_group_topics
+
+
+  - name: stg_groups
+    description: Cleaned staging model for Douban groups.
+
+    columns:
+      - name: group_id
+        description: Unique identifier for the Douban group
+        tests:
+          - not_null
+          - unique
+
+      - name: group_name
+        description: Name of the Douban group
+        tests:
+          - not_null
+
+      - name: group_who
+        description: Main celebrity or theme associated with the group
+
+      - name: is_active
+        description: Whether the group is marked as active

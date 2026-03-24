@@ -31,6 +31,16 @@ clean-targets:         # directories to be removed by `dbt clean`
 # files using the `{{ config(...) }}` macro.
 models:
   douban_dbt:
-    # Config indicated by + and applies to all files under models/example/
-    example:
+    +schema: null
+    
+    staging:
+      +schema: staging
       +materialized: view
+
+    intermediate:
+      +schema: intermediate
+      +materialized: view
+
+    marts:
+      +schema: marts
+      +materialized: table
