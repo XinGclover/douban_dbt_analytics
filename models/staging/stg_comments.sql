@@ -8,9 +8,11 @@ with zhaoxuelu as (
         cast(user_name as varchar) as user_name,
         cast(rating as integer) as rating,
         user_comment as comment,
-        votes as like_count,
+        votes as vote_useful,
         cast(create_time as timestamp) as comment_time,
-        cast(user_location as varchar) as ip_location
+        cast(user_location as varchar) as ip_location,
+        cast(insert_time as timestamp) as insert_time,
+        cast('zhaoxuelu_comments' as varchar) as source_name
     from {{ source('raw', 'zhaoxuelu_comments') }}
 
 ),
@@ -25,9 +27,11 @@ shujuanyimeng as (
         cast(user_name as varchar) as user_name,
         cast(rating as integer) as rating,
         user_comment as comment,
-        votes as like_count,
+        votes as vote_useful,
         cast(create_time as timestamp) as comment_time,
-        cast(user_location as varchar) as ip_location
+        cast(user_location as varchar) as ip_location,
+        cast(insert_time as timestamp) as insert_time,
+        cast('shujuanyimeng_comments' as varchar) as source_name
     from {{ source('raw', 'shujuanyimeng_comments') }}
 
 ),
@@ -42,9 +46,11 @@ lizhi as (
         cast(user_name as varchar) as user_name,
         cast(rating as integer) as rating,
         user_comment as comment,
-        votes as like_count,
+        votes as vote_useful,
         cast(create_time as timestamp) as comment_time,
-        cast(user_location as varchar) as ip_location
+        cast(user_location as varchar) as ip_location,
+        cast(insert_time as timestamp) as insert_time,
+        cast('lizhi_comments' as varchar) as source_name
     from {{ source('raw', 'lizhi_comments') }}
 
 ),
@@ -59,9 +65,11 @@ filter_drama as (
         cast(user_name as varchar) as user_name,
         cast(rating as integer) as rating,
         user_comment as comment,
-        votes as like_count,
+        votes as vote_useful,
         cast(create_time as timestamp) as comment_time,
-        cast(user_location as varchar) as ip_location
+        cast(user_location as varchar) as ip_location,
+        cast(insert_time as timestamp) as insert_time,
+        cast('filter_comments' as varchar) as source_name
     from {{ source('raw', 'filter_comments') }}
 
 )

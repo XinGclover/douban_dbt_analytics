@@ -32,7 +32,7 @@ models:
       - name: comment
         description: "Comment text content"
 
-      - name: like_count
+      - name: vote_useful
         description: "Number of likes/upvotes for the comment"
 
       - name: comment_time
@@ -40,6 +40,12 @@ models:
 
       - name: ip_location
         description: "User IP location recorded by Douban"
+
+      - name: insert_time
+        description: "Timestamp when the comment was inserted into db"
+
+      - name: source_name
+        description: "Source name of original table"
   
   - name: stg_comments_users
     description: "User observations extracted from comments"
@@ -113,9 +119,7 @@ models:
         description: "Source entity for this user observation"
 
   - name: stg_drama_info
-
     description: "Staging model for drama information"
-
     columns:
 
       - name: drama_id
@@ -169,4 +173,95 @@ models:
         description: "Total number of discussion threads for the drama"
 
       - name: insert_time
-        description: "Timestamp when the record was inserted into the staging model"
+        description: "Timestamp when the record was inserted into the staging model"  
+  - name: stg_drama_collection
+    description: "Unified staging model for Douban comments across multiple dramas"
+
+    columns:
+
+      - name: comment_id
+        description: "Unique id of the comment"
+        tests:
+          - not_null
+
+      - name: drama_id
+        description: "Identifier of the drama title"
+
+      - name: drama_name
+        description: "Name of the drama title"
+
+      - name: user_id
+        description: "Douban user id"
+        tests:
+          - not_null
+
+      - name: user_name
+        description: "User display name at the time of the comment"
+
+      - name: rating
+        description: "User rating of the drama"
+
+      - name: comment
+        description: "Comment text content"
+
+      - name: vote_useful
+        description: "Number of likes/upvotes for the comment"
+
+      - name: comment_time
+        description: "Timestamp when the comment was posted"
+
+      - name: ip_location
+        description: "User IP location recorded by Douban"
+
+      - name: insert_time
+        description: "Timestamp when the comment was inserted into db"
+
+      - name: source_name
+        description: "Source name of original table"
+
+  - name: stg_group_topics
+    description: >
+      Unified staging model for group topics from multiple sources.
+      Contains cleaned and standardized topic-level data for analysis.
+
+    columns:
+      - name: topic_id
+        description: Unique identifier for the topic
+        tests:
+          - not_null
+
+      - name: topic_title
+        description: Title of the topic
+
+      - name: topic_time
+        description: Timestamp when the topic was created or posted
+        tests:
+          - not_null
+
+      - name: reply_count
+        description: Number of replies in the topic
+
+      - name: group_id
+        description: Identifier of the group where the topic was posted
+        tests:
+          - not_null
+
+      - name: group_name
+        description: Name of the group
+
+      - name: key_word
+        description: Keyword used to categorize the topic (e.g. drama name)
+        tests:
+          - not_null
+
+      - name: insert_time
+        description: Timestamp when the record was inserted into the system
+
+      - name: source_name
+        description: Source table of the record
+        tests:
+          - not_null
+          - accepted_values:
+              values:
+                - zhaoxuelu_group_topics
+                - other_group_topics
