@@ -32,7 +32,7 @@ models:
       - name: comment
         description: "Comment text content"
 
-      - name: vote_useful
+      - name: like_count
         description: "Number of likes/upvotes for the comment"
 
       - name: comment_time
@@ -73,29 +73,52 @@ models:
         description: "Source entity for this user observation"
 
   - name: stg_topic_post_users
-    description: "User observations extracted from topic posts"
+    description: "Cleaned topic post data from Douban, including user and post information."
 
     columns:
 
+      - name: topic_id
+        description: "Unique identifier for the topic."
+        tests:
+          - not_null
+
+      - name: topic_title
+        description: "Title of the topic."
+
+      - name: post_type
+        description: "Type of post (e.g., main post or reply)."
+
+      - name: floor_no
+        description: "Floor number of the post within the topic."
+
+      - name: topic_url
+        description: "URL of the topic."
+
       - name: user_id
-        description: "Douban user id"
+        description: "Unique identifier of the user who created the post."
         tests:
           - not_null
 
       - name: user_name
-        description: "User display name"
+        description: "Display name of the user."
+
+      - name: is_op_author
+        description: "Indicates whether the user is the original poster (OP)."
+
+      - name: content_text
+        description: "Text content of the post."
+
+      - name: like_count
+        description: "Number of likes (or useful votes) for the post."
+
+      - name: post_time
+        description: "Timestamp when the post was published."
 
       - name: ip_location
-        description: "Location recorded when the comment was posted"
-
-      - name: observed_at
-        description: "Timestamp when this user was observed via comment"
-
-      - name: topic_id
-        description: "Topic identifier"
-
+        description: "IP-based location of the user."
+      
       - name: source_table
-        description: "Source entity for this user observation"
+        description: "Source entity for this posts observation"
 
   - name: stg_group_member_users
     description: "User observations extracted from group membership"    
@@ -108,9 +131,6 @@ models:
 
       - name: user_name
         description: "User display name"
-
-      - name: ip_location
-        description: "Location recorded when the comment was posted"
 
       - name: group_id
         description: "Group identifier"
@@ -204,7 +224,7 @@ models:
       - name: comment
         description: "Comment text content"
 
-      - name: vote_useful
+      - name: like_count
         description: "Number of likes/upvotes for the comment"
 
       - name: comment_time
@@ -265,3 +285,25 @@ models:
               values:
                 - zhaoxuelu_group_topics
                 - other_group_topics
+
+
+  - name: stg_groups
+    description: Cleaned staging model for Douban groups.
+
+    columns:
+      - name: group_id
+        description: Unique identifier for the Douban group
+        tests:
+          - not_null
+          - unique
+
+      - name: group_name
+        description: Name of the Douban group
+        tests:
+          - not_null
+
+      - name: group_who
+        description: Main celebrity or theme associated with the group
+
+      - name: is_active
+        description: Whether the group is marked as active

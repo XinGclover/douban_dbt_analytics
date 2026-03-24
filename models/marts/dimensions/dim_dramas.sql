@@ -14,6 +14,5 @@ select
     rating_5_star,
     total_comments,
     total_reviews,
-    total_discussions,
-    insert_time
+    total_discussions
 from {{ ref('stg_drama_info') }}

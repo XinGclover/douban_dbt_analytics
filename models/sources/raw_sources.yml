@@ -14,4 +14,6 @@ sources:
       - name: drama_collection
       - name: other_group_topics
       - name: zhaoxuelu_group_topics
+      - name: douban_groups
+      
 

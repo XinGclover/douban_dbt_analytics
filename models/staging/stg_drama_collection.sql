@@ -7,7 +7,7 @@ with source_data as (
         cast(null as varchar) as user_name,
         cast(rating as integer) as rating,
         cast(comment as varchar) as comment,
-        vote_useful,
+        vote_useful as like_count,
         cast(rating_time as timestamp) as comment_time,
         cast(null as varchar) as ip_location,
         cast(insert_time as timestamp) as insert_time,

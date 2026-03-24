@@ -1,0 +1,33 @@
+version: 2
+
+models:
+  - name: dim_topics
+    description: "Dimension table for discussion topics."
+    columns:
+      - name: topic_id
+        description: "Unique identifier for the topic."
+        tests:
+          - not_null
+          - unique
+
+      - name: topic_title
+        description: "Title of the topic."
+
+      - name: topic_time
+        description: "Timestamp when the topic was posted."
+
+      - name: reply_count
+        description: "Number of replies observed for the topic."
+
+      - name: group_id
+        description: "Group identifier the topic belongs to."
+        tests:
+          - relationships:
+              arguments:
+                to: ref('dim_groups')
+                field: group_id
+                
+      - name: key_word
+        description: "Key word of topic"
+        tests:
+          - not_null

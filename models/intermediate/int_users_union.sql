@@ -12,7 +12,7 @@ select
     user_id,
     user_name,
     ip_location,
-    observed_at,
+    post_time as observed_at,
     source_table
 from {{ ref('stg_topic_post_users') }}
 
