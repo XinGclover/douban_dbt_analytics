@@ -87,9 +87,6 @@ models:
     - name: director
       description: "Director of the drama"
 
-    - name: actors
-      description: "Main actors of the drama"
-
     - name: release_date
       description: "Release date of the drama"
 
