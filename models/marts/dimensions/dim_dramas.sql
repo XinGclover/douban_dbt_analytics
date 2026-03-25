@@ -3,7 +3,6 @@ select
     drama_name,
     release_year,
     director,
-    actors,
     release_date,
     rating,
     rating_people,

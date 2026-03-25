@@ -282,9 +282,10 @@ models:
         tests:
           - not_null
           - accepted_values:
-              values:
-                - zhaoxuelu_group_topics
-                - other_group_topics
+              arguments:
+                values:
+                  - zhaoxuelu_group_topics
+                  - other_group_topics
 
 
   - name: stg_groups

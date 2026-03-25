@@ -13,9 +13,7 @@ deduped as (
         topic_time,
         reply_count,
         group_id,
-        group_name,
         key_word,
-        insert_time,
         source_name,
         row_number() over (
             partition by topic_id
@@ -32,9 +30,7 @@ select
     topic_time,
     reply_count,
     group_id,
-    group_name,
     key_word,
-    insert_time,
     source_name
 from deduped
 where rn = 1

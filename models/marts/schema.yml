@@ -87,9 +87,6 @@ models:
     - name: director
       description: "Director of the drama"
 
-    - name: actors
-      description: "Main actors of the drama"
-
     - name: release_date
       description: "Release date of the drama"
 
@@ -125,3 +122,26 @@ models:
 
     - name: insert_time
       description: "Timestamp when the drama record was inserted into the warehouse"
+
+  - name: bridge_drama_actors
+    description: "Bridge table linking dramas and actors."
+    columns:
+    - name: drama_id
+      description: "Drama identifier."
+      tests:
+        - not_null
+        - relationships:
+            to: ref('dim_dramas')
+            field: drama_id
+
+    - name: actor_id
+      description: "Actor surrogate key."
+      tests:
+        - not_null
+        - relationships:
+            to: ref('dim_actors')
+            field: actor_id
+
+    tests:
+      - unique:
+          column_name: "(drama_id || '-' || actor_id)"
